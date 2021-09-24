@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.SignUp.SignUpPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.SignUp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fa="using:FontAwesome.UWP"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
+        <TextBlock Text="Register Page" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0 80 0 0" HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0 20 0 0" VerticalAlignment="Center">
+
+            <TextBox x:Name="fullnametext" PlaceholderText="Full Name" Width="250" Margin="25 10" />
+            <TextBlock x:Name="_EmailCheckError" Text="" Foreground="Red" HorizontalAlignment="Center"/>
+            <TextBox x:Name="emailtext" PlaceholderText="Email" Width="250" Margin="25 10" />
+            <TextBlock x:Name="_PassCheckError1" Text="" Foreground="Red" HorizontalAlignment="Center"/>
+            <PasswordBox  x:Name="password" PlaceholderText="Password" Width="250" Margin="25 10" />
+            <TextBlock x:Name="_PassCheckError" Text="" Foreground="Red" HorizontalAlignment="Center"/>
+            <PasswordBox MaxLength="64" x:Name="confirmpassword" PlaceholderText="Confirm Password" Width="250" Margin="0 10 0 0" />
+
+            <RelativePanel Margin="25 20">
+
+                <Button x:Name="signupbtn"  
+                Height="35" Width="95" Style="{StaticResource AccentButtonStyle}" Click="signupbtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="AddressCard"/>
+
+                            <TextBlock Text="Sign Up" Margin="5 0 0 0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="cancelbtn"   
+                Height="35" Width="95" Margin="30,0,0,0"  Style="{StaticResource ButtonRevealStyle}"  
+                RelativePanel.RightOf="signupbtn" Click="cancelbtn_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="AmericanSignLanguageInterpreting"/>
+
+                            <TextBlock Text="Cancel" Margin="5 0 0 0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+            </RelativePanel>
+            <TextBlock Text="Already have an Account ?" Margin="50 10 0 0"/>
+            <Button x:Name="loginbtn" Margin="70 15 0 0" Style="{StaticResource AccentButtonStyle}" Height="35" Width="100" Click="loginbtn_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="Signing" FontSize="20"  />
+
+                        <TextBlock Text="Sign In" Margin="5 0 0 0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Page>

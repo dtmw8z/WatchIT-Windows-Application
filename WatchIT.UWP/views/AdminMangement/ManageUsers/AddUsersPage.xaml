@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.AdminMangement.ManageUsers.AddUsersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.AdminMangement.ManageUsers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!-- 1st Row (index 0) -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Add new User" Style="{ThemeResource HeaderTextBlockStyle}" Margin="20"/>
+            <CommandBar VerticalAlignment="Center" Background="Transparent" Grid.Column="1" DefaultLabelPosition="Right"  Margin="25 10">
+                <AppBarButton x:Name="Save" Icon="Save" Label="Save"  Click="Save_Click"/>
+                <AppBarButton x:Name="Cancel" Icon="Cancel" Label="Cancel"  Click="Cancel_Click"/>
+            </CommandBar>
+        </Grid>
+        <!-- 2nd Row (index 1) -->
+        <StackPanel Grid.Row="1" Margin="25 10">
+
+            <TextBox x:Name="userName" Header="Full Name" Margin="0 8"/>
+            <TextBlock x:Name="_UserNameCheckError" Margin="5,0,0,0" Text="" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="userEmail" Header="User Email" Margin="0 8"  TextWrapping="Wrap"/>
+            <TextBlock x:Name="_UserEmailCheckError" Margin="5,0,0,0" Text="" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <PasswordBox x:Name="userPassword" Header="User Password" Margin="0 8"  />
+            <TextBlock x:Name="_PassCheckError" Margin="5,0,0,0" Text="" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+            <CheckBox x:Name="isAdmin" Content="Is Admin"/>
+
+        </StackPanel>
+
+
+    </Grid>
+</Page>

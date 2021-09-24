@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.AdminMangement.AdminPage.AdminMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.AdminMangement.AdminPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Margin="20 10 0 0" Text="Admin Management Page" Style="{ThemeResource TitleTextBlockStyle}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            
+            <Button Grid.Row="2" x:Name="manageUser" Content="Manage Users" Margin="20" Click="manageUser_Click"/>
+            <Button Grid.Row="2" x:Name="manageChannel" Content="Manage Channels" Margin="20 0 0 0" Click="manageChannel_Click"/>
+            <Button Grid.Row="2" x:Name="manageVideo" Content="Manage Videos" Margin="20 0 0 0" Click="manageVideo_Click"/>
+            <Button Grid.Row="2" x:Name="manageMusic" Content="Manage Musics" Margin="20 0 0 0" Click="manageMusic_Click"/>
+
+        </StackPanel>
+
+        <Line Grid.Row="3" Margin="10 10" X1="10" Y1="60" X2="1450" Y2="60" Stroke="Red" StrokeThickness="2"/>
+      
+
+        <Viewbox Grid.Row="4" Margin="20 90 0 0" Height="100" Width="200" Stretch="Fill" HorizontalAlignment="Left">
+            <Border BorderBrush="Gray" BorderThickness="15">
+                <StackPanel Background="{ThemeResource AppBarBackgroundThemeBrush}">
+                    <TextBlock Text="Total Registered Users" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                    <TextBlock Margin="40 50 0 0" x:Name="userCount" Text="{x:Bind userViewModel.Users.Count}" Style="{StaticResource TitleTextBlockStyle}"/>
+                </StackPanel>
+            </Border>
+        </Viewbox>
+
+        <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <controls:Loading.Background>
+                <SolidColorBrush Color="Black" Opacity="0.7" />
+            </controls:Loading.Background>
+
+            <StackPanel Orientation="Horizontal" Padding="12" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <ProgressRing IsActive="True" Margin="0 0 0 0" Foreground="{StaticResource SystemColorControlAccentBrush}" />
+                <TextBlock Text="Loading Videos. Please wait..." VerticalAlignment="Center" Foreground="White" />
+            </StackPanel>
+        </controls:Loading>
+
+
+
+    </Grid>
+</Page>

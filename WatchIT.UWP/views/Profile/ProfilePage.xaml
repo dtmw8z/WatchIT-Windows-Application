@@ -1,0 +1,81 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.Profile.ProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.Profile"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fa="using:FontAwesome.UWP"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!--<Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Padding="20 40"> 
+            <Button Grid.Row="2" x:Name="createChannel" Content="Create Your Channel" Style="{StaticResource AccentButtonStyle}" Click="createChannel_Click" CornerRadius="10"  BorderThickness="1" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
+        </Grid>
+        
+    </Grid>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+
+        <StackPanel Padding="80 0 0 0" Grid.Row="1" Orientation="Horizontal">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <PersonPicture DisplayName="{x:Bind UserViewModel.User.fullName}" Height="80"/>
+                <StackPanel Margin="40 80 0 0" Grid.Column="2" Orientation="Vertical">
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind UserViewModel.User.fullName}"/>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind UserViewModel.User.Email}"/>
+                    <StackPanel Orientation="Horizontal">
+                       
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+
+        <Button x:Name="createChannel" Margin="10 0 0 0" Grid.Row="4" Content="Create Your Channel" Style="{StaticResource AccentButtonStyle}" Click="createChannel_Click"   BorderThickness="1" FontWeight="Bold"  CornerRadius="10"    />
+        <Button x:Name="viewChannel" Margin="10 0 0 0" Grid.Row="4" Content="View Channel" Style="{StaticResource AccentButtonStyle}" Click="viewChannel_Click"   BorderThickness="1" FontWeight="Bold"  CornerRadius="10"    />
+
+        <Line Grid.Row="4" Margin="10 10" X1="10" Y1="60" X2="1450" Y2="60" Stroke="Red" StrokeThickness="2"/>
+       
+
+    </Grid>
+
+
+</Page>

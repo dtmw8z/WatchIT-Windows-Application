@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.Setting.SettingsPage" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Margin="20 10 10 0">
+            <!-- A large TextBlock. -->
+            <TextBlock Text="Settings" Style="{StaticResource SubheaderTextBlockStyle}"/>
+
+            <TextBlock Margin="0 20 0 0" Text="Theme" Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+            <ToggleSwitch Margin="0 15 0 0" Header="Choose a Theme" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded"/>
+
+            <TextBlock Margin="0 50 0 0" Text="About this app" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+
+            <TextBlock Margin="0 15 0 0" Text="This app is the interactive companion to the Youtube Website web site ." Style="{ThemeResource BodyTextBlockStyle}"/>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <TextBlock Margin="0 5 0 0" Text="Source Code:" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+                <HyperlinkButton Margin="10 0 0 0" Content="Gitlab" NavigateUri="https://gitlab.estig.ipb.pt/ad-2020-2021/project/wd-final-project-group-18" />
+
+            </StackPanel>
+            <TextBlock Margin="0 5 0 0" Text="WatchIT" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+            <TextBlock Text="By Group 18" Foreground="{ThemeResource SystemChromeDisabledLowColor}"/>
+            
+            
+
+
+
+
+
+
+
+
+        </StackPanel>
+
+
+
+
+
+    </Grid>
+</Page>

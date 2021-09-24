@@ -1,0 +1,19 @@
+﻿<ContentDialog
+    x:Class="WatchIT.UWP.views.Login.emailCheck"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.Login"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Reset your Password"
+    PrimaryButtonText="Send to"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <TextBox x:Name="sendEmail" Header="Please enter your email here"/>
+        <TextBlock x:Name="_checkUser" Foreground="Red"/>
+    </Grid>
+</ContentDialog>

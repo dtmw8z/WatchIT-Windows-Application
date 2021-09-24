@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.MyChannel.MyChannelView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.MyChannel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:fa="using:FontAwesome.UWP" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>           
+            
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+        </Grid>
+       
+        
+        <StackPanel Padding="80 0 0 0" Grid.Row="1" Orientation="Horizontal">
+            <ProgressRing x:Name="LoadingIndicator" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+            <PersonPicture Margin="40 10 0 0" Grid.Column="1" ProfilePicture="https://docs.microsoft.com/windows/uwp/contacts-and-calendar/images/shoulder-tap-static-payload.png"/>
+            <StackPanel Margin="40 80 0 0" Grid.Column="2" Orientation="Vertical">
+                    <TextBlock x:Name="channelName" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind channelViewModel.Channel.channelName}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="channelSubCount" Style="{ThemeResource CaptionTextBlockStyle}" Text="{x:Bind channelViewModel.Channel.UserSubscribesChannels.Count}"/>
+                        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Text=" Subscribers"/>
+
+                    </StackPanel>
+            </StackPanel>
+                <AppBarButton x:Name="editChannel" Icon="Edit" Margin="20 80 0 0" Grid.Column="3" Click="editChannel_Click" ToolTipService.ToolTip="Edit Channel Name"/>
+            </Grid>
+        </StackPanel>
+
+        <Button Style="{StaticResource ButtonRevealStyle}" Grid.Row="2"  Content="Upload Content" Grid.Column="2" Margin="0 0 90 0" HorizontalAlignment="Right">
+            <Button.Flyout >
+                <MenuFlyout Placement="LeftEdgeAlignedTop">
+                    <MenuFlyoutItem x:Name="uploadVideo" Text="Upload Video" Click="uploadVideo_Click" />
+                    <MenuFlyoutItem x:Name="uploadMusic" Text="Upload Music" Click="uploadMusic_Click" />
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+
+        <Button x:Name="manageChannel" Style="{StaticResource ButtonRevealStyle}" CornerRadius="10" Grid.Row="3" Margin="100 50 0 0" Background="Red"   HorizontalAlignment="Left" Content="Manage Channel" Click="manageChannel_Click"/>
+        
+        <Line Grid.Row="4" Margin="10 10" X1="10" Y1="60" X2="1450" Y2="60" Stroke="Red" StrokeThickness="2"/>
+        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Grid.Row="5" Margin="20 20" Text="Your Contents"/>
+        <StackPanel  Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="myVideos" Margin="10 0 50 0" CornerRadius="90,90,90,90" Background="Transparent" Height="150" Width="150" Click="myVideos_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <fa:FontAwesome Icon="VideoCamera" FontSize="70"  />
+
+
+                        <TextBlock Text="My Videos" Margin="0 5 0 0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button x:Name="myMusics" Margin="50 0 10 0"  CornerRadius="90,90,90,90" Background="Transparent" Height="150" Width="150" Click="myMusics_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <fa:FontAwesome Icon="Music" FontSize="70"  />
+
+
+                        <TextBlock Text="My Musics" Margin="0 5 0 0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </StackPanel>
+        <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}"  >
+            <controls:Loading.Background>
+                <SolidColorBrush Color="Gray" Opacity="0.5" />
+            </controls:Loading.Background>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <ProgressRing FontSize="20" IsActive="True" Margin="150 0 0 0" Foreground="{StaticResource SystemColorControlAccentBrush}" />
+                <TextBlock FontSize="20" Text="Loading Content Page. Please wait..." VerticalAlignment="Center" Foreground="Black" />
+            </StackPanel>
+        </controls:Loading>
+
+
+    </Grid>
+   
+
+
+
+
+
+
+
+</Page>

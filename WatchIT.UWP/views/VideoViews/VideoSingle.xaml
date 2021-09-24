@@ -1,0 +1,215 @@
+﻿<Page
+    x:Class="WatchIT.UWP.views.VideoViews.VideoSingle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WatchIT.UWP.views.VideoViews"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:WatchIT.Domain.Model" xmlns:fa="using:FontAwesome.UWP" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid Margin="10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+           
+
+
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <MediaElement HorizontalAlignment="Left" x:Name="myVideoPlayer" AreTransportControlsEnabled="True" IsMuted="False" AutoPlay="False" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Margin="15 5" Text="{x:Bind VideoViewModel.Video.Title}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold"/>
+
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0 15" Grid.Column="1">
+
+
+
+
+
+                        <Button Margin="5" Background="Transparent" x:Name="addtoPlaylist"  Click="addtoPlaylist_Click" ToolTipService.ToolTip="Add to Playlist">
+                            <Button.Content>
+                                <Viewbox MaxHeight="45" MaxWidth="45">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets"  Glyph="&#xE728;"/>
+                                </Viewbox>
+
+                            </Button.Content>
+                        </Button>
+
+                        <Button Margin="5" Background="Transparent"  x:Name="dislike" Click="dislike_click" ToolTipService.ToolTip="Dislike the video">
+                            <Button.Content>
+                                <Viewbox MaxHeight="45" MaxWidth="45">
+                                    <fa:FontAwesome Icon="Heart" Foreground="Red" HorizontalAlignment="Center" />
+                                </Viewbox>
+
+                            </Button.Content>
+                        </Button>
+
+                        <Button Margin="5" Background="Transparent" x:Name="like" Click="like_click" ToolTipService.ToolTip="Like the video">
+                            <Button.Content>
+                                <Viewbox MaxHeight="45" MaxWidth="45">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets"  Glyph="&#xEB51;"/>
+                                </Viewbox>
+
+                            </Button.Content>
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+
+
+
+
+
+                <controls:Expander x:Name="vidDescription" VerticalAlignment="Top" Margin="0 10" Header="See Video Description" HorizontalContentAlignment="Center" IsExpanded="False" HorizontalAlignment="Stretch" ExpandDirection="Down">
+                    <Grid MinHeight="250">
+                        <TextBlock Margin="10 " HorizontalAlignment="Stretch" TextWrapping="WrapWholeWords" Text="{x:Bind VideoViewModel.Video.Description}" VerticalAlignment="Stretch" />
+                    </Grid>
+                </controls:Expander>
+
+
+
+
+                <TextBlock  x:Name="cmt" Text="Leave a Comment" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15 20 0 0 "/>
+                <TextBox x:Name="commentText"  PlaceholderText="Comment" TextWrapping="Wrap" Height="100"  Margin="15 5" HorizontalAlignment="Stretch" />
+
+                <Button x:Name="post" Content="Post Comment" Margin="15 0 0 0" MinWidth="120" FontWeight="SemiBold" Padding="10" Click="Post_Click"/>
+                <TextBlock x:Name="_CommentError" Text="" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="15 0 0 5" Text="Comments" FontSize ="25" Style="{StaticResource BaseTextBlockStyle}"/>
+
+
+                <ListView ItemsSource="{x:Bind VideoViewModel.Video.VideoComments}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate  x:DataType="model:VideoComment">
+
+                            <StackPanel Orientation="Vertical" Margin="5 10" >
+
+                                <StackPanel Orientation="Horizontal" Margin="0 5" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <PersonPicture DisplayName="{x:Bind User.fullName}" Height="35" Margin="3" />
+                                        <TextBlock Text="{x:Bind User.fullName}" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="3" VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="Updated at" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemBaseMediumColor}" Margin="20 3 3 3 " VerticalAlignment="Center"/>
+                                        <TextBlock Text="{x:Bind updated_at}" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemBaseMediumColor}"  Margin="3"  VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <TextBlock  Text="{x:Bind commentText}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+
+
+
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <StackPanel Orientation="Vertical" Background="{ThemeResource SystemBaseLowColor}" Padding="5 10" Margin="5">
+
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <PersonPicture DisplayName="{x:Bind VideoViewModel.Video.Channel.channelName}" Height="40" Margin="10 0" />
+                        <TextBlock FontSize="30" Text="{x:Bind VideoViewModel.Video.Channel.channelName}" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Background="{ThemeResource SystemBaseLowColor}" Padding="5" Margin="5 10">
+
+
+                    <TextBlock  Text="{x:Bind VideoViewModel.Video.Channel.channelDescription}" TextWrapping="Wrap" MaxWidth="300" Margin="15"/>
+
+                    <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Center">
+                        <Button Margin="5" Padding="15 5" Background="MediumSlateBlue" x:Name="subscribe" FontSize="25" Click="SubscribeButton_Click" Content="Subscribe" MinWidth="200"/>
+
+                        <Button Margin="5" Padding="15 5" Background="Red" x:Name="unsubscribe" FontSize="25" Click="UnSubscribeButton_Click" Content="Unsubscribe"  MinWidth="200"/>
+                        <TextBlock Margin="0 10" HorizontalAlignment="Center" Text="(Cannot subscribe to own's channel)" x:Name="cannotSub" Visibility="Collapsed" Foreground="Red"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Background="{ThemeResource SystemBaseLowColor}" Padding="5" Margin="5 10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="{x:Bind VideoViewModel.Video.Channel.UserSubscribesChannels.Count}" FontWeight="Bold" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                            <fa:FontAwesome Icon="User" Margin="10 0" ToolTipService.ToolTip="Subscribers"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="30 0">
+                            <TextBlock Text="{x:Bind VideoViewModel.Video.Channel.Videos.Count}" FontWeight="Bold" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                            <fa:FontAwesome Icon="YoutubePlay" Margin="10 0" ToolTipService.ToolTip="Videos"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind VideoViewModel.Video.Channel.Musics.Count}" FontWeight="Bold" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                            <fa:FontAwesome Icon="Music" Margin="10 0" ToolTipService.ToolTip="Musics"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+
+
+                <TextBlock Margin="15 5"  Text="Recommended Videos" Style="{StaticResource TitleTextBlockStyle}"/>
+               
+
+                <ListView x:Name="videoSuggestion"  ItemsSource="{x:Bind VideoViewModel.Videos}" IsItemClickEnabled="True" ItemClick="VideoSuggestion_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Video"  >
+                            <StackPanel Orientation="Horizontal" Margin="5 15">
+                                <Image Stretch="UniformToFill" Height="75" Width="100"  Source="{x:Bind local:VideoPage.LoadThumbnailAsync(Thumbnail)}" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="10 5 3 5" Height="Auto" Width="Auto" TextWrapping="Wrap" Text="{x:Bind Title}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="by " Margin="15 0 3 0" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                                        <TextBlock Height="Auto" Width="Auto" TextWrapping="Wrap" Text="{x:Bind Channel.channelName}" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{x:Bind VideoLikes.Count}" VerticalAlignment="Bottom" Margin="90 5 0 5" FontWeight="Bold" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Stretch"/>
+                                        <fa:FontAwesome Icon="ThumbsUp" Margin="10 5"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackPanel>
+
+
+            <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}"  >
+                <controls:Loading.Background>
+                    <SolidColorBrush Color="Gray" Opacity="0.5" />
+                </controls:Loading.Background>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <ProgressRing FontSize="20" IsActive="True" Margin="150 0 0 0" Foreground="{StaticResource SystemColorControlAccentBrush}" />
+                    <TextBlock FontSize="20" Text="Loading Video. Please wait..." VerticalAlignment="Center" Foreground="Black" />
+                </StackPanel>
+            </controls:Loading>
+
+
+
+
+        </Grid>
+        
+    </ScrollViewer>
+</Page>
